@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 FileWriter writer = new FileWriter(file);
                 writer.write(text);
                 writer.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 Log.e("writeToFile", "Error writing to file: " + FILENAME, e);
             }
         }
@@ -89,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
                 bR.close();
                 reader.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 Log.e("readToTV", "Error reading file: " + FILENAME, e);
             }
         }
@@ -152,23 +154,36 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * checks of the external storage is available
+     * @return	boolean
+     */
     public boolean isExternalStorageAvailable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 
-
+    /**
+     * checks of the external storage is available
+     * @return	boolean
+     */
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(this, android. Manifest.permission. WRITE_EXTERNAL_STORAGE);
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
-
+    /**
+     * request permission from user to use external storage
+     * @return	none
+     */
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION);
     }
 
+    /**
+     * result of request permission from user
+     * @return	none
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
